@@ -36,7 +36,7 @@ class TransactionAnalyzer {
     };
     
     getTransactionByType(type){//6
-        return array.filter(transaction => transaction.type === type);
+        return array.filter(transaction => transaction.transaction_type === type);
     };
     getTransactionsByMerchant(merchantName){//8
         return array.filter(transaction => transaction.merchant_name === merchantName);
@@ -96,14 +96,16 @@ class TransactionAnalyzer {
 
     findMostDebitTransactionMonth(){
         const debitArray = array.filter(transaction => transaction.type ==="debit");
-        
-    };
+        debitArray.forEach(transaction => {
+            const month = new Date(transaction.transaction_date).getMonth();
+            transactionCount[month] = (transactionCount[month]) + 1;
+        });
+        };
 
-    calculateTotalAmountByDate(year, month, day, array){//5
+    calculateTotalAmountByDate(year, month, day){//5
       
         const requesteDate = new Date(year,month,day)
-        //Массив заданной даты
-        const dateArray2 = dateArray1.filter( )
+        array.reduce()
 
     };
 }   
