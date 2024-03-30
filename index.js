@@ -25,7 +25,8 @@ class TransactionAnalyzer {
     
     };
     getUniqueTransactionType(type){//3
-        for (const item of array)
+       
+
     };
 
     
@@ -61,7 +62,7 @@ class TransactionAnalyzer {
             } else {
                 accum.creditTotal += transact.transaction_amount;
             } return accum;
-            ;}{debitTotal:0,
+            ;},{debitTotal:0,
             creditTotal:0});
         if (debitTotal < creditTotal) {
             return "credit"
@@ -82,7 +83,7 @@ class TransactionAnalyzer {
     };
 
     mapTransactionDescriptions(){//18
-            const transactionDescription = array.map(({transaction_description})=> transaction_description);
+        const transactionDescription = array.map(({transaction_description})=> transaction_description);
 
     };
 
@@ -93,9 +94,13 @@ class TransactionAnalyzer {
 
 
 
-
+    findMostDebitTransactionMonth(){
+        const debitArray = array.filter(transaction => transaction.type ==="debit");
+        
+    };
 
     calculateTotalAmountByDate(year, month, day, array){//5
+      
         const requesteDate = new Date(year,month,day)
         //Массив заданной даты
         const dateArray2 = dateArray1.filter( )
