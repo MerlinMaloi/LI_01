@@ -11,24 +11,91 @@ const newTransaction={
 
 class TransactionAnalyzer {
     constructor (transactions){
-        this.array = transactions
+        this.array = transactions.map(transact => {
+            return { ...transact, transaction_date: new Date(transact.transaction_date) }
+    });
+        
     };
-    addTransaction(newTransaction){
+    addTransaction(newTransaction){//1
         this.array.push(newTransaction);
         
     };
-    getAllTransaction(array){
-        return(array);
+    getAllTransaction(){//2
+        return array;
     
     };
-    getUniqueTransactionType(array){
+    getUniqueTransactionType(type){//3
         for (const item of array)
     };
-    calculateTotalAmount(this.array){
-        const sumAllAmount = this.array."transaction_amount".reduce((accumulator, currentValue) => accumulator + currentValue,0);
+
+    
+    calculateTotalAmount(){//4
+        const sumAllAmount = array.reduce((accumulator, currentValue) => accumulator + currentValue.transaction_amount,0);
         return sumAllAmount;
     };
-    calculateTotalAmountByDate(year, month, day, array){
+    
+    getTransactionByType(type){//6
+        return array.filter(transaction => transaction.type === type);
+    };
+    getTransactionsByMerchant(merchantName){//8
+        return array.filter(transaction => transaction.merchant_name === merchantName);
+    };
+        
+    calculateAverageTransactionAmount(){//9
+        const sumAverageAmount = array.reduce((accumulator, currentValue) => accumulator + currentValue.transaction_amount,0);
+        const lentghArray = array.length - 1;//- 1 так как в JS выделяется свободный индекс
+        return sumAverageAmount / lenghtArray;
+    };
+    getTransactionsByAmountRange(minAmount, maxAmount) {//10
+        return array.filter(array => array.transaction_amount >= minAmount && array.transaction_amount <= maxAmount);
+    };
+    calculateTotalDebitAmount(){//11
+        const debitArray = array.filter(transaction => transaction.type ==="debit");
+        const debitTotal = debitArray.reduce((accumulator, currentValue) => accumulator + currentValue.transaction_amount,0);
+        return debitTotal;
+    };
+    mostTransactionTypes(){//14
+        const {creditTotal, debitTotal} = array.reduce((accum, transact) => {
+            if (transact.type === 'debit') {
+                accum.debitTotal += transact.transaction_amount;
+            } else {
+                accum.creditTotal += transact.transaction_amount;
+            } return accum;
+            ;}{debitTotal:0,
+            creditTotal:0});
+        if (debitTotal < creditTotal) {
+            return "credit"
+        }
+        else if (debitTotal > creditTotal) {
+            return "debit"
+         }
+        else{return "equal"}
+            
+    };
+    getTransactionsBeforeDate(date){//16
+        const transBefore = array.filter(dateTrans => dateTrans.transaction_date < date);
+        return transBefore;
+    };
+
+    findTransactionById(id){//17
+        return array.find(obj => obj.transaction_id === id)
+    };
+
+    mapTransactionDescriptions(){//18
+            const transactionDescription = array.map(({transaction_description})=> transaction_description);
+
+    };
+
+
+
+
+
+
+
+
+
+
+    calculateTotalAmountByDate(year, month, day, array){//5
         //Массив с классом Date вместо Sting-значения "transaction_date" 
         const dateArray1 = array.map(transact => {
             return { ...transact, "transaction_date": new Date(transact.transaction_date) }
@@ -37,5 +104,5 @@ class TransactionAnalyzer {
         //Массив заданной даты
         const dateArray2 = dateArray1.filter( )
 
-    }
+    };
 }   
