@@ -96,10 +96,6 @@ class TransactionAnalyzer {
 
 
     calculateTotalAmountByDate(year, month, day, array){//5
-        //Массив с классом Date вместо Sting-значения "transaction_date" 
-        const dateArray1 = array.map(transact => {
-            return { ...transact, "transaction_date": new Date(transact.transaction_date) }
-    });
         const requesteDate = new Date(year,month,day)
         //Массив заданной даты
         const dateArray2 = dateArray1.filter( )
