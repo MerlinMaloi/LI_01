@@ -105,7 +105,10 @@ class TransactionAnalyzer {
     calculateTotalAmountByDate(year, month, day){//5
       
         const requesteDate = new Date(year,month,day)
-        array.reduce()
-
+        array.reduce((accum,currentValue)=>{ if currentValue.transaction_date == requesteDate{
+            accum += currentValue.transaction_amount
+        } else {
+            continue}
+    },0)
     };
 }   
